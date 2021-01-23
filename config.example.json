@@ -1,6 +1,7 @@
 {
     "server": "mumble://example.com",
     "password": "password",
+    "cookies": null,
     "bitrate": null,
     "maxlength": 900,
     "name": "nodejs",
