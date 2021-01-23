@@ -13,7 +13,7 @@ This is a simple music bot for Mumble written because all the others required to
 
 * `server`: URL of the server to connect to
 * `password`: Server password
-* `cookies`: YoutubeDL authenticated cookies, for more please see [here](https://github.com/ytdl-org/youtube-dl/issues/26054#issuecomment-754093206)
+* `cookies`: YoutubeDL authenticated cookies, for more please see [here](https://github.com/ytdl-org/youtube-dl/issues/26054#issuecomment-754093206). Set to null to skip using cookie.
 * `bitrate`: Bitrate of audio to transmit measured in bits per second. Note that if this goes over the server limit, the audio will abruptly cut out frequently. There's also quite a bit of overhead, so try to go at least 42,000 below the server maximum. If this value is set to null, the bitrate will automatically be set based on this overhead estimation.
 * `maxlength`: The maximum length of a song in seconds
 * `name`: Username to use when connecting
