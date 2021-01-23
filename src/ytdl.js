@@ -11,6 +11,10 @@ exports.details = function(url) {
 			args.push("--proxy");
 			args.push(global.config.proxy);
 		}
+		if (global.config.cookies) {
+			args.push("--cookies");
+			args.push(global.config.cookies);
+		}
 		args.push(url);
 		let proc = child_process.spawn("youtube-dl", args);
 		let data = "";
@@ -65,6 +69,10 @@ exports.fetch = function(url, filename) {
 			if (global.config.proxy) {
 				args.push("--proxy");
 				args.push(global.config.proxy);
+			}
+			if (global.config.cookies) {
+			args.push("--cookies");
+			args.push(global.config.cookies);
 			}
 			if (global.config.external_downloader) {
 				args.push("--external-downloader");
@@ -125,7 +133,12 @@ function transcode(inF, outF) {
 exports.populateQueue = function(url) {
 	return new Promise((resolve, reject) => {
 		let playlist = [];
-		let proc = child_process.spawn("youtube-dl", ["--flat-playlist", "-J", url]);
+		let args = ["--flat-playlist", "-J", url];
+		if (global.config.cookies) {
+			args.push("--cookies");
+			args.push(global.config.cookies);
+		}
+		let proc = child_process.spawn("youtube-dl", args);
 		let data = ""
 		proc.stdout.on("data", (d) => data += d);
 		proc.on("exit", (code) => {
