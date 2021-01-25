@@ -35,7 +35,7 @@ jobs:
             docker build . --file Dockerfile
           fi
 
-  # Push image to GitHub Packages.   
+  # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
     # Ensure test job passes before pushing image.
@@ -46,11 +46,11 @@ jobs:
 
     steps:
       - name: Checkout code
-	  uses: actions/checkout@v2
-	- name: Publish changed images
-	  uses: dawidd6/action-docker-publish-changed@v3
-	  with:
-	    username: ${{secrets.USER}}
-	    password: ${{secrets.PASS}}
-	    platforms: linux/amd64,linux/arm64
-	    tag: latest
+    uses: actions/checkout@v2
+  - name: Publish changed images
+    uses: dawidd6/action-docker-publish-changed@v3
+    with:
+      username: ${{secrets.USER}}
+      password: ${{secrets.PASS}}
+      platforms: linux/amd64,linux/arm64
+      tag: latest
