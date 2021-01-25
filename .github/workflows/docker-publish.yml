@@ -52,5 +52,5 @@ jobs:
         with:
           username: ${{secrets.USER}}
           password: ${{secrets.PASS}}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm
           tag: latest
