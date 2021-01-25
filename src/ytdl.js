@@ -12,6 +12,7 @@ exports.details = function(url) {
 			args.push(global.config.proxy);
 		}
 		if (global.config.cookies) {
+			args.push("--mark-watched");
 			args.push("--cookies");
 			args.push(global.config.cookies);
 		}
@@ -71,8 +72,9 @@ exports.fetch = function(url, filename) {
 				args.push(global.config.proxy);
 			}
 			if (global.config.cookies) {
-			args.push("--cookies");
-			args.push(global.config.cookies);
+				args.push("--no-mark-watched");
+				args.push("--cookies");
+				args.push(global.config.cookies);
 			}
 			if (global.config.external_downloader) {
 				args.push("--external-downloader");
@@ -116,7 +118,7 @@ exports.fetch = function(url, filename) {
 
 function transcode(inF, outF) {
 	return new Promise((res, rej) => {
-		let args = ["-i", inF, "-ar", "48000", "-ac", "1", "-c:a", "pcm_s16le", "-f", "s16le", "-y", outF];
+		let args = ["-i", inF, "-c:a", "pcm_s16le", "-f", "s16le", "-y", outF];
 		console.debug("[INFO] Transcoding " + inF + " to " + outF);
 		let proc = child_process.spawn("ffmpeg", args);
 		proc.on("exit", (code) => {
